@@ -10,9 +10,12 @@ var app = (0, express_1.default)();
 var port = 3000;
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
-app.use(express_1.default.static(path_1.default.join(__dirname, "../assets")));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../assets')));
 app.use(routes_1.default);
+app.get('/', function (req, res) {
+    res.redirect('/api');
+});
 app.listen(port, function () {
-    console.log("listening");
+    console.log('listening');
 });
 exports.default = app;

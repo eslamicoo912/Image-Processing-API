@@ -41,12 +41,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __importDefault(require("../index"));
 var supertest_1 = __importDefault(require("supertest"));
-describe("Test the endpoint response", function () {
-    it("gets api/images endpoint", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var res;
+var data_1 = require("../utils/data");
+describe('Test the endpoint response', function () {
+    it('test against the actual resize endpoint, with the correct URL and proper parameters', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var randomItem, res;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, supertest_1.default)(index_1.default).get("/api/images")];
+                case 0:
+                    randomItem = Math.floor(Math.random() * data_1.data.length) // berlin -- moscow -- san -- newyork
+                    ;
+                    return [4 /*yield*/, (0, supertest_1.default)(index_1.default).get("/api/images?filename=".concat(data_1.data[randomItem], "&width=200&height=200"))];
                 case 1:
                     res = _a.sent();
                     expect(res.statusCode).toEqual(200);

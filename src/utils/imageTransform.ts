@@ -1,5 +1,5 @@
-import sharp from "sharp";
-import path from "path";
+import sharp from 'sharp'
+import path from 'path'
 
 const resizeImage = (
   filename: string,
@@ -12,15 +12,15 @@ const resizeImage = (
       height: Number(height),
       fit: sharp.fit.cover,
     })
-    .toBuffer();
-};
+    .toBuffer()
+}
 
 const resizedImagePath = (
   filename: string,
   height: number,
   width: number
 ): string => {
-  return `assets/thumb/${filename}${height}x${width}.jpg`;
-};
+  return `assets/thumb/${filename}${height}x${width}.jpg`
+}
 
-export { resizeImage, resizedImagePath };
+export { resizeImage, resizedImagePath }

@@ -59,19 +59,23 @@ images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 imgPath = path_1.default.join(process_1.default.cwd(), "/assets/full/".concat(filename, ".jpg"));
                 img = data_1.data.includes(filename);
                 if (filename === undefined) {
-                    return [2 /*return*/, res.status(200).send('Please type the image name')];
+                    res.status(200).send('Please type the image name');
+                    return [2 /*return*/];
                 }
                 if (img === false) {
-                    return [2 /*return*/, res.status(404).send('image not found')];
+                    res.status(404).send('image not found');
+                    return [2 /*return*/];
                 }
                 if (fs_2.default.existsSync(imgPath) === false) {
-                    return [2 /*return*/, res.status(404).send('resource not found')];
+                    res.status(404).send('resource not found');
+                    return [2 /*return*/];
                 }
                 if (!width && !height) {
                     return [2 /*return*/, res.sendFile(imgPath)];
                 }
                 if (isNaN(width) || isNaN(height)) {
-                    return [2 /*return*/, res.status(400).send('Width and height should be a number')];
+                    res.status(400).send('Width and height should be a number');
+                    return [2 /*return*/];
                 }
                 if (!!fs_2.default.existsSync(outputImgPath)) return [3 /*break*/, 3];
                 return [4 /*yield*/, (0, imageTransform_1.resizeImage)(filename, height, width)];

@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import path from 'path'
 import process from 'process'
 import { promises as fsPromises } from 'fs'
@@ -8,7 +8,7 @@ import { resizeImage, resizedImagePath } from '../../utils/imageTransform'
 
 const images = express.Router()
 
-images.get('/', async (req, res) => {
+images.get('/', async (req: Request, res: Response): Promise<void> => {
   const width: number = req.query.width as unknown as number
   const height: number = req.query.height as unknown as number
   const filename = req.query.filename as string
@@ -18,19 +18,23 @@ images.get('/', async (req, res) => {
   const imgPath = path.join(process.cwd(), `/assets/full/${filename}.jpg`)
   const img = data.includes(filename)
   if (filename === undefined) {
-    return res.status(200).send('Please type the image name')
+    res.status(200).send('Please type the image name')
+    return
   }
   if (img === false) {
-    return res.status(404).send('image not found')
+    res.status(404).send('image not found')
+    return
   }
   if (fs.existsSync(imgPath) === false) {
-    return res.status(404).send('resource not found')
+    res.status(404).send('resource not found')
+    return
   }
   if (!width && !height) {
     return res.sendFile(imgPath)
   }
   if (isNaN(width) || isNaN(height)) {
-    return res.status(400).send('Width and height should be a number')
+    res.status(400).send('Width and height should be a number')
+    return
   }
   if (!fs.existsSync(outputImgPath)) {
     const resizedImage = await resizeImage(filename, height, width)

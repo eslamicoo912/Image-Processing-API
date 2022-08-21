@@ -37,21 +37,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var imageTransform_1 = require("../utils/imageTransform");
-describe("Test image processing function", function () {
-    it("Throws unfound image error", function () { return __awaiter(void 0, void 0, void 0, function () {
+describe('Test image processing function', function () {
+    it('Throws unfound image error', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, expectAsync((0, imageTransform_1.resizeImage)("cairo", 200, 200)).toBeRejected()];
+                case 0: return [4 /*yield*/, expectAsync((0, imageTransform_1.resizeImage)('cairo', 200, 200)).toBeRejected()];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];
             }
         });
     }); });
-    it("Resolves succesfully with right name / width / height", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('Resolves succesfully with right name / width / height', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, expectAsync((0, imageTransform_1.resizeImage)("berlin", 200, 200)).toBeResolved()];
+                case 0: return [4 /*yield*/, expectAsync((0, imageTransform_1.resizeImage)('berlin', 200, 200)).toBeResolved()];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];
